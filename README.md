@@ -3,6 +3,9 @@
 This is a demo to experiment with envoy circuit breaker.
 The setup is the same as [envoyproxy/envoy's](http://github.com/envoyproxy/envoy) example: [front-proxy](http://github.com/envoyproxy/envoy/tree/master/examples/front-proxy).
 
+# Demo 
+https://www.envoyproxy.io/docs/envoy/latest/start/sandboxes/front_proxy
+
 ## Setup
 The setup includes two services behind envoys and there is a front envoy directing traffic to these services.
 ![Circuit Breaker](front-proxy/front-proxy.PNG "Circuit Breaker")
