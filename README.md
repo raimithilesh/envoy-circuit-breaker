@@ -5,7 +5,7 @@ The setup is the same as [envoyproxy/envoy's](http://github.com/envoyproxy/envoy
 
 ## Setup
 The setup includes two services behind envoys and there is a front envoy directing traffic to these services.
-![Circuit Breaker](front-proxy/front-proxy.png "Circuit Breaker")
+![Circuit Breaker](front-proxy/front-proxy.PNG "Circuit Breaker")
 
 ## Documentation
 Envoy has [configuration for circuit breaker](https://www.envoyproxy.io/docs/envoy/latest/api-v2/api/v2/cluster/circuit_breaker.proto) for each cluster:
