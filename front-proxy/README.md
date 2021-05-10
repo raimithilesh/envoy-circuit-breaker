@@ -8,7 +8,7 @@ The setup includes two services behind envoys and there is a front envoy directi
 ![Circuit Breaker](front-proxy/front-proxy.png "Circuit Breaker")
 
 ## Documentation
-Envoy has [configuration for circuit breaker](https://www.envoyproxy.io/docs/envoy/latest/_images/docker_compose_front_proxy.svg) for each cluster:
+Envoy has [configuration for circuit breaker](https://www.envoyproxy.io/docs/envoy/latest/api-v2/api/v2/cluster/circuit_breaker.proto) for each cluster:
 ```
 {
   "priority": "...",
