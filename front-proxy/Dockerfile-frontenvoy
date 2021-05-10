@@ -1,8 +1,7 @@
-FROM envoyproxy/envoy:v1.12.1
+FROM envoyproxy/envoy-dev:latest
 
 RUN apt-get update && apt-get -q install -y \
     curl
-ADD ./start_envoy.sh /usr/local/bin/start_envoy.sh
-RUN chmod u+x /usr/local/bin/start_envoy.sh
-ENTRYPOINT /usr/local/bin/start_envoy.sh
-# CMD /usr/local/bin/envoy -l debug -c /etc/front-envoy.yaml --service-cluster front-proxy
+COPY ./front-envoy.yaml /etc/front-envoy.yaml
+RUN chmod go+r /etc/front-envoy.yaml
+CMD ["/usr/local/bin/envoy", "-c", "/etc/front-envoy.yaml", "--service-cluster", "front-proxy"]
