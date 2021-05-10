@@ -1,9 +1,10 @@
 from flask import Flask
 from flask import request
-import os
-import requests
 import socket
+import os
 import sys
+import requests
+import time
 
 app = Flask(__name__)
 
@@ -19,37 +20,34 @@ TRACE_HEADERS_TO_PROPAGATE = [
     'X-B3-Flags',
 
     # Jaeger header (for native client)
-    "uber-trace-id",
-
-    # SkyWalking headers.
-    "sw8"
+    "uber-trace-id"
 ]
 
-
-@app.route('/service/<service_number>')
+@app.route('/service/<service_number>', methods = ['GET', 'POST'])
 def hello(service_number):
-    return (
-        'Hello from behind Envoy (service {})! hostname: {} resolved'
-        'hostname: {}\n'.format(
-            os.environ['SERVICE_NAME'], socket.gethostname(),
-            socket.gethostbyname(socket.gethostname())))
-
+    if request.method == 'GET':
+        return ('Hello from behind Envoy (service {})! hostname: {} resolved'
+                'hostname: {}\n'.format(os.environ['SERVICE_NAME'],
+                                    socket.gethostname(),
+                                    socket.gethostbyname(socket.gethostname())))
+    if request.method == 'POST':
+        # time.sleep(60)
+        print (request.data)
+        return (request.data)
 
 @app.route('/trace/<service_number>')
 def trace(service_number):
     headers = {}
     # call service 2 from service 1
-    if int(os.environ['SERVICE_NAME']) == 1:
+    if int(os.environ['SERVICE_NAME']) == 1 :
         for header in TRACE_HEADERS_TO_PROPAGATE:
             if header in request.headers:
                 headers[header] = request.headers[header]
-        requests.get("http://localhost:9000/trace/2", headers=headers)
-    return (
-        'Hello from behind Envoy (service {})! hostname: {} resolved'
-        'hostname: {}\n'.format(
-            os.environ['SERVICE_NAME'], socket.gethostname(),
-            socket.gethostbyname(socket.gethostname())))
-
+        ret = requests.get("http://localhost:9000/trace/2", headers=headers)
+    return ('Hello from behind Envoy (service {})! hostname: {} resolved'
+            'hostname: {}\n'.format(os.environ['SERVICE_NAME'],
+                                    socket.gethostname(),
+                                    socket.gethostbyname(socket.gethostname())))
 
 if __name__ == "__main__":
-    app.run(host='127.0.0.1', port=8085, debug=True)
+    app.run(host='127.0.0.1', port=8080, debug=True, threaded=True)
