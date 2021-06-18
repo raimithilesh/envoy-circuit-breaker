@@ -68,9 +68,9 @@ static_resources:
     circuit_breakers:
       thresholds:
       - priority: DEFAULT
-        max_requests: 1 # http1 does not respect this config
+        max_requests: 3 # http1 does not respect this config
         max_connections: 3
-        max_pending_requests: 1
+        max_pending_requests: 3
     load_assignment:
       cluster_name: service1
       endpoints:
@@ -88,8 +88,8 @@ static_resources:
       thresholds:
       - priority: DEFAULT
         max_requests: 3 # http1 does not respect this config
-        max_connections: 1
-        max_pending_requests: 1
+        max_connections: 3
+        max_pending_requests: 3
     load_assignment:
       cluster_name: service2
       endpoints:
