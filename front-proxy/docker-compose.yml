@@ -8,7 +8,7 @@ services:
     networks:
       - envoymesh
     ports:
-      - "10000:10000"
+      - "8083:8083"
       - "9901:9901"
 
   service1:
