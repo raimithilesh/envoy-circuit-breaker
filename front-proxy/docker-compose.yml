@@ -8,9 +8,8 @@ services:
     networks:
       - envoymesh
     ports:
-      - "8085:8085"
-      - "8443:8443"
-      - "8001:8001"
+      - "10000:10000"
+      - "9901:9901"
 
   service1:
     build:
@@ -22,17 +21,6 @@ services:
       - envoymesh
     environment:
       - SERVICE_NAME=1
-
-  service2:
-    build:
-      context: .
-      dockerfile: Dockerfile-service
-    volumes:
-      - ./service-envoy.yaml:/etc/service-envoy.yaml
-    networks:
-      - envoymesh
-    environment:
-      - SERVICE_NAME=2
 
 networks:
   envoymesh: {}
