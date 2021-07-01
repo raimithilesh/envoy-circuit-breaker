@@ -65,4 +65,4 @@ static_resources:
             address:
               socket_address:
                 address: 127.0.0.1
-                port_value: 5678
+                port_value: 8000
