@@ -9,6 +9,7 @@ services:
       - envoymesh
     ports:
       - "9901:9901"
+      - "8085:8085"
       - "10000:10000"
 
   service1:
