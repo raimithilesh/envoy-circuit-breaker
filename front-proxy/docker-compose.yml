@@ -8,11 +8,8 @@ services:
     networks:
       - envoymesh
     ports:
-      - "8085:8085"
-      - "8443:8443"
       - "9901:9901"
       - "10000:10000"
-      - "8000:8000"
 
   service1:
     build:
