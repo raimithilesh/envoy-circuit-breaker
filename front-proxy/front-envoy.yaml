@@ -22,10 +22,6 @@ static_resources:
                   prefix: "/service/1"
                 route:
                   cluster: service1
-              - match:
-                  prefix: "/service/2"
-                route:
-                  cluster: service2
           http_filters:
           - name: envoy.filters.http.router
             typed_config: {}
@@ -52,10 +48,6 @@ static_resources:
                   prefix: "/service/1"
                 route:
                   cluster: service1
-              - match:
-                  prefix: "/service/2"
-                route:
-                  cluster: service2
           http_filters:
           - name: envoy.filters.http.router
             typed_config: {}
@@ -79,25 +71,6 @@ static_resources:
             address:
               socket_address:
                 address: service1
-                port_value: 8000
-  - name: service2
-    connect_timeout: 0.75s
-    type: STRICT_DNS
-    lb_policy: ROUND_ROBIN
-    circuit_breakers:
-      thresholds:
-      - priority: DEFAULT
-        max_requests: 6 # http1 does not respect this config
-        max_connections: 3
-        max_pending_requests: 3
-    load_assignment:
-      cluster_name: service2
-      endpoints:
-      - lb_endpoints:
-        - endpoint:
-            address:
-              socket_address:
-                address: service2
                 port_value: 8000
 admin:
   address:
