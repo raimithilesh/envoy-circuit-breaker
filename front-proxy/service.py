@@ -50,4 +50,4 @@ def trace(service_number):
                                     socket.gethostbyname(socket.gethostname())))
 
 if __name__ == "__main__":
-    app.run(host='127.0.0.1', port=8085, debug=True, threaded=True)
+    app.run(host='0.0.0.0', port=8085, debug=True, threaded=True)
