@@ -70,5 +70,5 @@ static_resources:
         - endpoint:
             address:
               socket_address:
-                address: 127.0.0.1
-                port_value: 5678
+                address: go-control-plane
+                port_value: 18000
