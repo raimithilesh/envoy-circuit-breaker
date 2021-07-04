@@ -21,6 +21,14 @@ services:
       - envoymesh
     environment:
       - SERVICE_NAME=1
+      
+  go-control-plane:
+    build:
+      context: .
+      dockerfile: Dockerfile-control-plane
+    command: bin/example -debug
+    healthcheck:
+      test: nc -zv localhost 18000    
 
 networks:
   envoymesh: {}
